@@ -26,8 +26,8 @@ checkValid <- function(x){
   naind <- is.na(x)|is.nan(x)
   if(sum(!naind) == 0) # everything NA or NaN
     stop("nothing to plot")
-  Infind <- is.finite(x)
-  if(any(!Infind))
+  Infind <- is.infinite(x)
+  if(any(Infind))
     stop("need finite values to plot")
   !naind
 }
