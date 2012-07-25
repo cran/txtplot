@@ -144,12 +144,26 @@ txtplot <- function(x, y = NULL, pch="*",
     ln <- length(xl[[i]])
     fln <- floor(ln/2)
     z <- 1
-    for(j in -fln:fln){
-      if(!(ln%%2) & j == fln)
+    shift <- 0
+    ## assure we do not write over plot region
+    if(i == 1 & (indx[i]-fln <= (phgt+1)*(width+1))){
+      shift <- indx[i]-fln-((phgt+1)*(width+1)+1)
+    }
+    if(i == length(xl) & (indx[i]+fln > (phgt+1)*(width+1)+width+1)){
+      shift <- indx[i]+fln - ((phgt+1)*(width+1)+width)
+    }
+    for(j in (-fln:fln)-shift){
+      if(!(ln%%2) & j == fln-shift)
         break
       ch[indx[i] + j] <- xl[[i]][z]
       z <- z+1
     }
+    ## for(j in -fln:fln){
+    ##   if(!(ln%%2) & j == fln)
+    ##     break
+    ##   ch[indx[i] + j] <- xl[[i]][z]
+    ##   z <- z+1
+    ## }
   }
   indy <- lmar+(phgt-ytck)*(width+1)
   yl <- strsplit(ytkch, NULL)
@@ -278,7 +292,7 @@ txtboxplot <- function(..., range = 1.5, legend = NULL, xlab = NULL,
   if(is.null(legend))
     legend <- ifelse(nobj == 1, FALSE, TRUE)
   ## determine plotting region
-  rng <- getRng(x)
+  rng <- getRng(x, perc=0.08)
   delta <- diff(rng)
   ## get tick marks
   xticks <- getTicks(rng)
@@ -293,6 +307,8 @@ txtboxplot <- function(..., range = 1.5, legend = NULL, xlab = NULL,
   if(!is.null(xlab)){
     xlabpos <- round(0.5*(rng[2]-rng[1])/delta*width)
     indxlab <- xlabpos
+    ## truncate to plotting region
+    xlab <- substr(xlab, 1, width) 
     xl <- strsplit(xlab, NULL)
     ln <- length(xl[[1]])
     fln <- floor(ln/2)
@@ -321,8 +337,16 @@ txtboxplot <- function(..., range = 1.5, legend = NULL, xlab = NULL,
     ln <- length(xl[[i]])
     fln <- floor(ln/2)
     z <- 1
-    for(j in -fln:fln){
-      if(!(ln%%2) & j == fln)
+    shift <- 0
+    ## assure we do not write over plot region
+    if(i == 1 & (indx[i]-fln < 0)){
+      shift <- indx[i]-fln-1
+    }
+    if(i == length(xl) & (indx[i]+fln > width)){
+      shift <- indx[i]+fln - width
+    }
+    for(j in (-fln:fln)-shift){
+      if(!(ln%%2) & j == fln-shift)
         break
       ch1[indx[i] + j] <- xl[[i]][z]
       z <- z+1
@@ -348,7 +372,6 @@ txtboxplot <- function(..., range = 1.5, legend = NULL, xlab = NULL,
 }
 
 boxcore <- function(bstats, width, rng, delta, no = NULL){
-
   inc <- 1
   ch <- character(3*(width+1))
   ch[1:(3*(width+1))] <- " "

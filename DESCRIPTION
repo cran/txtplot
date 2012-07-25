@@ -1,8 +1,8 @@
 Package: txtplot
 Type: Package
 Title: Text based plots
-Version: 1.0-2
-Date: 2011-06-18
+Version: 1.0-3
+Date: 2012-07-25
 Author: Bjoern Bornkamp
 Maintainer: Bjoern Bornkamp <bbnkmp@gmail.com>
 Description: Provides functions to produce rudimentary ascii graphics
@@ -11,6 +11,6 @@ Description: Provides functions to produce rudimentary ascii graphics
         as well as a boxplot function.
 License: LGPL
 LazyLoad: yes
-Packaged: 2011-06-18 15:18:01 UTC; bjoern
+Packaged: 2012-07-24 23:11:16 UTC; bjoern
 Repository: CRAN
-Date/Publication: 2011-06-18 17:05:04
+Date/Publication: 2012-07-25 05:19:59
