@@ -1,16 +1,21 @@
 Package: txtplot
 Type: Package
-Title: Text based plots
-Version: 1.0-3
-Date: 2012-07-25
-Author: Bjoern Bornkamp
-Maintainer: Bjoern Bornkamp <bbnkmp@gmail.com>
+Title: Text Based Plots
+Version: 1.0-4
+Date: 2020-04-04
+Authors@R: c(person("Bjoern", "Bornkamp", email = "bbnkmp@mail.de",
+                  role = c("aut", "cre")),
+             person("Ivan", "Krylov", email = "krylov.r00t@gmail.com", role = c("ctb"), comment = "txtimage"))    
 Description: Provides functions to produce rudimentary ascii graphics
         directly in the terminal window. Provides a basic plotting
         function (and equivalents of curve, density, acf and barplot)
-        as well as a boxplot function.
+        as well as boxplot and image functions.
 License: LGPL
 LazyLoad: yes
-Packaged: 2012-07-24 23:11:16 UTC; bjoern
+Packaged: 2020-04-04 10:20:09 UTC; bjoern
 Repository: CRAN
-Date/Publication: 2012-07-25 05:19:59
+Date/Publication: 2020-04-05 05:00:02 UTC
+NeedsCompilation: no
+Author: Bjoern Bornkamp [aut, cre],
+  Ivan Krylov [ctb] (txtimage)
+Maintainer: Bjoern Bornkamp <bbnkmp@mail.de>
